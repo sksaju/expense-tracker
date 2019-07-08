@@ -1,11 +1,47 @@
 const bcrypt = require( 'bcrypt' );
+const jwt = require( 'jsonwebtoken' );
 const User = require( '../model/user' );
-const { registerValidator } = require( '../validators/userValidator' );
+const { loginValidator, registerValidator } = require( '../validators/userValidator' );
+const { serverError, resourceError } = require( '../util/error' );
+
 const  UserController = {
     login( req, res ) {
-        res.json({
-            message: "login"
-        });
+        const { email, password } = req.body;
+        const validator = loginValidator( req.body );
+
+        if( !validator.isValid ) {
+            return res.status( 400 ).json( validator.error );
+        } else {
+            User.findOne( { email } )
+                .then( user => {
+                    if( !user ) {
+                        return resourceError( res, "User not found!" );
+                    }
+                    bcrypt.compare( password, user.password, ( err, result ) => {
+                        if( err ) {
+                            return serverError( res, err );
+                        }
+
+                        if( !result ) {
+                            return resourceError( res, "Password not match" );
+                        }
+
+                        let token = jwt.sign({
+                            _id: user._id,
+                            name: user.name,
+                            email: user.email
+                        }, 'SECRET', { expiresIn: '2h' });
+
+                        res.status( 200 ).json({
+                            message: "Login successful",
+                            token: `Bearer ${token}`
+                        });
+                    })
+                })
+                .catch( err => {
+                    serverError( res, err );
+                })
+        }
     },
 
     register( req, res ) {
@@ -13,30 +49,30 @@ const  UserController = {
         const validator = registerValidator( req.body );
 
         if( !validator.isValid ) {
-            res.status( 400 ).json( validator.error );
+            return res.status( 400 ).json( validator.error );
         } else {
             User.findOne( { email } )
                 .then( user => {
                     if( user ) {
-                        res.status( 400 ).json( { message: "Email already exists!" } );
+                        return resourceError( res, "Email already exists!" );
                     }
                     bcrypt.hash( password, 11, ( err, hash ) => {
                         if( err ) {
-                            res.status( 500 ).json( { message: "Internal server error!" } );
+                            return serverError( res, err );
                         }
                         let user = new User({ name, email, password: hash });
                         user.save()
                             .then( user => {
                                 res.status( 200 ).json( { message: "Registration successful" } );
-                            })
-                            .catch( error => {
-                                res.status( 500 ).json( { message: "Internal server error!" } );
+                            }) 
+                            .catch( err => {
+                                serverError( res, err );
                             })
                     })
                 })
-                .catch( error => {
-                    res.status( 500 ).json( { message: "Internal server error!" } );
-                })
+                .catch( err => {
+                    serverError( res, err );
+                });
         }
     }
 }

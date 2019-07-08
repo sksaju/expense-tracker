@@ -1,4 +1,16 @@
 const UserValidator = {
+    loginValidator( input ) {
+        let error = {};
+        if( !input.email ) {
+            error.email = "Please enter your email";
+        }
+        if( !input.password ) {
+            error.password = "Please enter your password";
+        }
+
+        return { error, isValid: Object.keys( error ).length === 0 }
+    },
+
     registerValidator( input ) {
         let error = {};
         if( !input.name ) {
