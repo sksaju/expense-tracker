@@ -2,7 +2,7 @@ const bcrypt = require( 'bcrypt' );
 const jwt = require( 'jsonwebtoken' );
 const User = require( '../model/user' );
 const { loginValidator, registerValidator } = require( '../validators/userValidator' );
-const { serverError, resourceError } = require( '../util/error' );
+const { serverError, resourceError } = require( '../utils/error' );
 
 const  UserController = {
     login( req, res ) {
