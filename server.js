@@ -22,7 +22,7 @@ app.get( '/', ( req, res ) => {
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () =>  {
     console.log( `SERVER is running on port ${PORT}` );
-    mongoose.connect( 'mongodb://localhost/transaction-management', { useNewUrlParser: true },  () => {
+    mongoose.connect( 'mongodb://localhost/expense-tracker', { useNewUrlParser: true },  () => {
         console.log( 'database connected' );
     } )
 })

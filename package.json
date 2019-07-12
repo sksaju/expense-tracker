@@ -1,5 +1,5 @@
 {
-  "name": "transaction-management-app",
+  "name": "expense-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sksaju/transaction-management-app.git"
+    "url": "git+https://github.com/sksaju/expense-tracker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sksaju/transaction-management-app/issues"
+    "url": "https://github.com/sksaju/expense-tracker/issues"
   },
-  "homepage": "https://github.com/sksaju/transaction-management-app#readme",
+  "homepage": "https://github.com/sksaju/expense-tracker#readme",
   "devDependencies": {
     "concurrently": "^4.1.1",
     "nodemon": "^1.19.1"
