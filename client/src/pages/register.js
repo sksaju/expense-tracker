@@ -40,7 +40,7 @@ class Register extends  Component {
 		return (
 			<div className="row">
 				<div className="col-md-6 offset-md-3">
-				<h1 className="text-center display-4">Register Here</h1>
+				<h1 className="text-center display-4">Register</h1>
 				<form onSubmit={this.submitHandler}>
 					<div className="form-group">
 						<label htmlFor="name"> Name: </label>
