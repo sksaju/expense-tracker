@@ -9,7 +9,7 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 ```
 > git clone https://github.com/sksaju/expense-tracker.git
-> cd transaction-management-app
+> cd expense-tracker
 > npm install
 > npm start
 ```
