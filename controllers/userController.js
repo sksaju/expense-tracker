@@ -4,7 +4,24 @@ const User = require( '../model/user' );
 const { loginValidator, registerValidator } = require( '../validators/userValidator' );
 const { serverError, resourceError } = require( '../utils/error' );
 
-const  UserController = {
+class UserController {
+    
+    /**
+     * constructor function
+     * @constructor
+     */
+    constructor() {
+        this.login = this.login.bind(this);
+        this.register = this.register.bind(this);
+    }
+
+    /**
+     * User login action
+     * @param     {object}  req
+     * @param     {object}  res
+     * @access    public
+     * @return    {json} mixed
+     */
     login( req, res ) {
         const { email, password } = req.body;
         const validator = loginValidator( req.body );
@@ -42,8 +59,15 @@ const  UserController = {
                     serverError( res, err );
                 })
         }
-    },
+    }
 
+    /**
+     * User registration action
+     * @param     {object}  req
+     * @param     {object}  res
+     * @access    public
+     * @return    {json} mixed
+     */
     register( req, res ) {
         const { name, email, password, confirmPassword } = req.body;
         const validator = registerValidator( req.body );
@@ -77,4 +101,4 @@ const  UserController = {
     }
 }
 
-module.exports = UserController;
+module.exports = new UserController();
