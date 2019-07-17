@@ -1,5 +1,5 @@
-const Transaction = require('../model/transaction');
-const User = require('../model/user');
+const Transaction = require('../models/Transaction');
+const User = require('../models/User');
 const { serverError } = require('../utils/error');
 
 class TransactionController {
@@ -13,7 +13,7 @@ class TransactionController {
         this.findById = this.findById.bind(this);
         this.create = this.create.bind(this);
         this.update = this.update.bind(this);
-        this.delete = this.delete.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
     /**
@@ -98,7 +98,7 @@ class TransactionController {
                     .catch( error => serverError( res, error ) );
                 
             })
-            .catch(error => serverError(res, error));
+            .catch( error => serverError( res, error ) );
     }
 
     /**
@@ -110,14 +110,14 @@ class TransactionController {
      */
     update( req, res ) {
         let { transactionId } = req.params
-        Transaction.findOneAndUpdate({ _id: transactionId }, { $set: req.body }, {new: true})
+        Transaction.findOneAndUpdate( { _id: transactionId }, { $set: req.body }, {new: true} )
             .then(result => { 
                 res.status(200).json({
                     message: 'Updated Successfully',
                     transaction: result
                 })
             })
-            .catch(error => serverError(res, error))
+            .catch( error => serverError( res, error ) )
     }
 
     /**
@@ -127,16 +127,16 @@ class TransactionController {
      * @access    public
      * @return    {json} mixed
      */
-    delete(req, res) {
+    remove(req, res) {
         let { transactionId } = req.params
-        Transaction.findOneAndDelete({ _id: transactionId })
+        Transaction.findOneAndDelete( { _id: transactionId } )
             .then(result => {
                 res.status(200).json({
                     message: 'Deleted Successfully',
                     ...result._doc
                 })
             })
-            .catch(error => serverError(res, error))
+            .catch( error => serverError( res, error ) )
     }
 }
 

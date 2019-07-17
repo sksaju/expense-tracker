@@ -1,6 +1,6 @@
 const bcrypt = require( 'bcrypt' );
 const jwt = require( 'jsonwebtoken' );
-const User = require( '../model/user' );
+const User = require( '../models/User' );
 const { loginValidator, registerValidator } = require( '../validators/userValidator' );
 const { serverError, resourceError } = require( '../utils/error' );
 
