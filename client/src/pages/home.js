@@ -7,16 +7,20 @@ class Home extends  Component {
 	render() {
         return (
             <div className="container">
-                <h1> Home page </h1>
-                { this.props.auth.isAuthenticated ? 
-					<button
-						className='btn btn-danger'
-						onClick={() => this.props.logout(this.props.history)}
-					>
-						Logout
-					</button> :
-					<Link to='/login'><button className='btn btn-success'> Login </button></Link>
-                }
+				<div className="row">
+					<div className="col-md-6 offset-md-3 text-center">
+						<h1 className="display-4">Home</h1>
+						{ this.props.auth.isAuthenticated ? 
+							<button
+								className='btn btn-danger'
+								onClick={() => this.props.logout(this.props.history)}
+							>
+								Logout
+							</button> :
+							<Link to='/login'><button className='btn btn-success'> Login </button></Link>
+						}
+					</div>
+				</div>
             </div>
         )
     }

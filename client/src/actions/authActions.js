@@ -36,7 +36,7 @@ export const login = ( user, history ) => dispatch => {
                     user: jwtDecode( token )
                 }
             });
-            history.push('/');
+            history.push('/dashboard');
         })
         .catch( err => {
             dispatch({

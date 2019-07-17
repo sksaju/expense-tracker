@@ -47,9 +47,9 @@ class UserController {
                             _id: user._id,
                             name: user.name,
                             email: user.email,
-                            amount: user.amount,
                             income: user.income,
                             expense: user.expense,
+                            balance: user.balance,
                             transactions: user.transactions
                         }, 'SECRET', {expiresIn: '2h'})
 
@@ -92,9 +92,9 @@ class UserController {
                             name,
                             email,
                             password: hash,
-                            balance: 0,
-                            expense: 0,
                             income: 0,
+                            expense: 0,
+                            balance: 0,
                             transactions: []
                         });
                         user.save()

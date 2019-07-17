@@ -1,2 +1,7 @@
-export const SET_USER = 'SET_USER';
-export const USERS_ERROR = 'USERS_ERROR';
+export const SET_USER           = 'SET_USER';
+export const USERS_ERROR        = 'USERS_ERROR';
+
+export const GET_TRANSACTIONS   = 'GET_TRANSACTIONS';
+export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
+export const REMOVE_TRANSACTION = 'REMOVE_TRANSACTION';
+export const UPDATE_TRANSACTION = 'UPDATE_TRANSACTION';
