@@ -46,11 +46,15 @@ class UserController {
                         let token = jwt.sign({
                             _id: user._id,
                             name: user.name,
-                            email: user.email
-                        }, 'SECRET', { expiresIn: '2h' });
+                            email: user.email,
+                            amount: user.amount,
+                            income: user.income,
+                            expense: user.expense,
+                            transactions: user.transactions
+                        }, 'SECRET', {expiresIn: '2h'})
 
                         res.status( 200 ).json({
-                            message: "Login successful",
+                            message: 'Login successful',
                             token: `Bearer ${token}`
                         });
                     })
@@ -69,7 +73,7 @@ class UserController {
      * @return    {json} mixed
      */
     register( req, res ) {
-        const { name, email, password, confirmPassword } = req.body;
+        const { name, email, password } = req.body;
         const validator = registerValidator( req.body );
 
         if( !validator.isValid ) {
@@ -84,7 +88,15 @@ class UserController {
                         if( err ) {
                             return serverError( res, err );
                         }
-                        let user = new User({ name, email, password: hash });
+                        let user = new User({
+                            name,
+                            email,
+                            password: hash,
+                            balance: 0,
+                            expense: 0,
+                            income: 0,
+                            transactions: []
+                        });
                         user.save()
                             .then( user => {
                                 res.status( 200 ).json( { message: "Registration successful" } );
