@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import { updateTransaction } from '../../actions/transactionAction';
+import { updateTransaction } from '../../actions/transactionActions';
 
 
 const customStyles = {
@@ -25,6 +25,7 @@ class UpdateTransaction extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         this.setState({
             amount: this.props.transaction.amount,
             note: this.props.transaction.note
@@ -38,9 +39,9 @@ class UpdateTransaction extends React.Component {
     }
 
     submitHandler = event => {
-        event.preventDefault()
-        this.props.updateTransaction(this.props.transaction._id, this.state)
-        this.props.close()
+        event.preventDefault();
+        this.props.updateTransaction(this.props.transaction._id, this.state);
+        this.props.close();
     }
 
     render() {
@@ -67,7 +68,7 @@ class UpdateTransaction extends React.Component {
                             />
                     </div>
                     <div className='form-group'>
-                        <label htmlFor='note'> Amount: </label>
+                        <label htmlFor='note'> Note: </label>
                             <textarea
                                 className='form-control'
                                 placeholder="Enter a Note"

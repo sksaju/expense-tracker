@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTransactions, removeTransaction } from '../actions/transactionActions';
+import { getTransactions, updateTransaction, removeTransaction } from '../actions/transactionActions';
 import CreateTransaction from '../components/transaction/create';
+import UpdateTransaction from '../components/transaction/update';
 
 
 class Dashboard extends React.Component {
@@ -63,8 +64,17 @@ class Dashboard extends React.Component {
                                 <li
                                     key={transaction._id}
                                     className='list-group-item'>
-                                    <p>Type: {transaction.type}</p>
-                                    <p>Amount: {transaction.amount}</p>
+                                    <p><strong>{transaction.type}</strong> <span className="badge badge-info">${transaction.amount}</span></p>
+                                    <p>Note: {transaction.note}</p>
+                                    <button className='btn btn-success btn-sm mr-1' onClick={ () => this.openUpdateModal(transaction._id) }>Update</button>
+                                    <button className='btn btn-danger btn-sm' onClick={ () => this.props.removeTransaction(transaction._id) }>Delete</button>
+                                    { this.state.id === transaction._id &&
+                                        <UpdateTransaction
+                                            isOpen={this.state.updateModalOpen}
+                                            close={this.closeUpdateModal}
+                                            transaction={transaction}
+                                        />
+                                    }
                                 </li>
                             ))
                         }
@@ -80,4 +90,4 @@ const mapStateToProps = state => ({
     transactions: state.transactions
 })
 
-export default connect( mapStateToProps, { getTransactions, removeTransaction } )( Dashboard );
+export default connect( mapStateToProps, { getTransactions, updateTransaction, removeTransaction } )( Dashboard );

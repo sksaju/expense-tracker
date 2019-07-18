@@ -13,13 +13,6 @@ const transactionReducer = (state = [], action) => {
             return transactions;
         }
 
-        case Types.REMOVE_TRANSACTION: {
-            let transactions = [...state];
-            return transactions.filter(tran => {
-                return tran._id !== action.payload.id;
-            })
-        }
-
         case Types.UPDATE_TRANSACTION: {
             let transactions = [...state];
             return transactions.map(tran => {
@@ -27,6 +20,13 @@ const transactionReducer = (state = [], action) => {
                     return action.payload.transaction;
                 }
                 return tran;
+            })
+        }
+
+        case Types.REMOVE_TRANSACTION: {
+            let transactions = [...state];
+            return transactions.filter(tran => {
+                return tran._id !== action.payload.id;
             })
         }
 

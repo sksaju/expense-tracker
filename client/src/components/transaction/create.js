@@ -32,8 +32,8 @@ class CreateTransaction extends React.Component {
     }
 
     submitHandler = event => {
-        event.preventDefault()
-        this.props.createTransaction(this.state)
+        event.preventDefault();
+        this.props.createTransaction(this.state);
         this.setState({
             amount: 0,
             type: '',
@@ -72,13 +72,13 @@ class CreateTransaction extends React.Component {
                             name='type'
                         >
                             <option> Select A Type </option>
-                            <option value="expense"> Expense </option>
-                            <option value="income">Income</option>
+                            <option value="Expense"> Expense </option>
+                            <option value="Income">Income</option>
                         </select>
                             
                     </div>
                     <div className='form-group'>
-                        <label htmlFor='note'> Amount: </label>
+                        <label htmlFor='note'> Note: </label>
                             <textarea
                                 className='form-control'
                                 placeholder="Enter a Note"
