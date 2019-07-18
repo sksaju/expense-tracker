@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
             <div className="row">
                 <div className="col-md-8 offset-md-2">
                     <h1>Welcome {auth.user.name} </h1>
-                    <p>You Email is {auth.user.email} </p>
+                    <p>Your email is {auth.user.email} </p>
                     <br />
                     <h1>Transactions: <button className='btn btn-primary float-right' onClick={this.openCreateModal}>Add New Transaction</button></h1>
                     <CreateTransaction

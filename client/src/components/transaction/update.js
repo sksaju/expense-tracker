@@ -50,9 +50,9 @@ class UpdateTransaction extends React.Component {
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.close}
                 style={customStyles}
-                contentLabel='Create A New Transaction'
+                contentLabel='Update Transaction'
             >
-                <h2>Create A New Transaction</h2>
+                <h2>Update Transaction</h2>
                 <form onSubmit={this.submitHandler}>
                     <div className='form-group'>
                         <label htmlFor='amount'> Amount: </label>
