@@ -9,9 +9,13 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 ```
 > git clone https://github.com/sksaju/expense-tracker.git
-> cd expense-tracker
+> cd expense-tracker 
 > npm install
-> npm start
+> cd client 
+> npm install
+> cd ../ 
+> config to mongodb and run database with mongod command
+> npm run dev
 ```
 
 #### Not Familiar with Git?
@@ -19,5 +23,9 @@ Click [here](https://github.com/sksaju/expense-tracker/) then download the .zip 
 
 ```
 > npm install
-> npm start
+> cd client 
+> npm install
+> cd ../ 
+> config to mongodb and run database with mongod command
+> npm run dev
 ```
