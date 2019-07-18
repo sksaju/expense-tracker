@@ -14,7 +14,8 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 > cd client 
 > npm install
 > cd ../ 
-> config server.js and run MongoDB with mongod command
+> config server.js 
+> run MongoDB with mongod command
 > npm run dev
 ```
 
@@ -26,6 +27,7 @@ Click [here](https://github.com/sksaju/expense-tracker/releases/) then download 
 > cd client 
 > npm install
 > cd ../ 
-> config server.js and run MongoDB with mongod command
+> config server.js 
+> run MongoDB with mongod command
 > npm run dev
 ```
