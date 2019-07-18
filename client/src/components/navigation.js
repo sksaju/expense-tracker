@@ -7,7 +7,7 @@ class Navigation extends React.Component {
 
     render() {
         return (
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+            <nav className='navbar navbar-default navbar-expand-lg'>
                 <Link to='/'>
                     <span className='navbar-brand'>Expense Tracker</span>
                 </Link>
